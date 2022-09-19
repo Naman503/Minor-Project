@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+    padding: 0; 
+    /* width:100vh;
+    height:100vh; */
+    /* display:flex; */
+    align-items: center;
+    justify-content: center; 
+  
+}
+canvas{
+    position: absolute;
+    left: 25%;
+}
+#video{
+    position: absolute;
+    left: 25%;
+    border-radius: 20px;
+    border: 8px solid black;
+}
+.py-2{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+@media screen and (max-width: 495px) {
+    #video{
+        width: 80%;
+        height: 42%;
+        left:2%;
+    }
+    canvas{
+        position: absolute;
+        left: 2%;
+        width: 80%;
+        height: 42%;
+
+    }
+    strong{
+        font-size: 1rem;
+    }
+  }
