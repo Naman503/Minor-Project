@@ -54,16 +54,23 @@
             <h1 class="fw-light">B-tech // 3rd Year</h1>
             <p class="lead text-muted">CS-2 Data Base Managment System</p>
             <p>
-              <a href="#" class="btn btn-primary my-2">Video</a>
-              <a href="#" class="btn btn-secondary my-2">Uplode Image</a>
+              <a href="#" id="videoButton" class="btn btn-primary my-2 hide">Video</a>
+              <a href="#" id="pauseVideo" class="btn btn-secondary my-2 hide">Pause video</a>
+              <a href="#" id="stopVideo" class="btn btn-secondary my-2 hide">Stop video</a>
+              <a href="#" id="uplodeImage" class="btn btn-secondary my-2 hide">Uplode Image</a>
+              <h3 class="loadingMassage">Loading All the Modules....</h3>
             </p>
           </div>
         </div>
       </section>
 
 
+<div class="videoDiv">
+  <video id="video" width="720" height="560" class="hide" muted></video>
+</div>
 
-    <video id="video" width="720" height="560" autoplay muted></video>
+    <input type="file" id="imageUpload" class="hide">
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>

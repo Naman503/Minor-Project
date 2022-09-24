@@ -10,13 +10,39 @@ body{
 }
 canvas{
     position: absolute;
-    left: 25%;
+    left: 0;
+     
+}
+.videoDiv{
+    position:absolute;
+    left:25%;
+    right:25%;   
+
 }
 #video{
     position: absolute;
-    left: 25%;
     border-radius: 20px;
     border: 8px solid black;
+    
+}
+#imageUpload{
+    border: 2px solid black;
+    font-size: larger;
+    padding: 18px;
+    border-radius: 25px;
+    margin: auto;
+    justify-content: center;
+    position: relative;
+    margin :0 40%;
+}
+.imagePosition{
+    margin: 2% 2% 2% 5%;
+    
+}
+.hide{
+    /* visibility: hidden; */
+    display: none;
+    
 }
 .py-2{
     margin-bottom: 0;
@@ -37,5 +63,17 @@ canvas{
     }
     strong{
         font-size: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    #video{
+        left:2%;
+    }
+    canvas{
+        position: absolute;
+        left: 2%;
+       
+
     }
   }
