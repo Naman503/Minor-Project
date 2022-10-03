@@ -8,7 +8,8 @@ const uplodeImage=document.getElementById("uplodeImage");
 const pauseVideo=document.getElementById("pauseVideo");
 
 
-
+var myObject=new Float32Array();
+var myObject_d=new Float32Array();
 
 const imageUploadActionFrame = document.getElementById('imageUpload');
 
@@ -158,15 +159,23 @@ async function start() {
     const labels = ['Captain America', 'Captain Marvel', 'Hawkeye', 'Jim Rhodes', 'Thor', 'Tony Stark']
     return Promise.all(
       labels.map(async label => {
-        const descriptions = []
-        for (let i = 1; i <= 2; i++) {
-          const img = await faceapi.fetchImage(`https://raw.githubusercontent.com/Naman503/Minor-Project/main/labeled_images/${label}/${i}.jpg`)
-          const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
-          descriptions.push(detections.descriptor)
-        }
-  
+        // if(localStorage.getItem("myObj")==null){
+
+          const descriptions = []
+          for (let i = 1; i <= 2; i++) {
+              const img = await faceapi.fetchImage(`https://raw.githubusercontent.com/Naman503/Minor-Project/main/labeled_images/${label}/${i}.jpg`)
+              const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
+              descriptions.push(detections.descriptor);
+            }
+            // myObject=myObject+(descriptions);
+            // console.log(myObject);
+            // localStorage.setItem("myObj",JSON.stringify(myObject));
+          // }
+        // myObject_d=JSON.parse(localStorage.getItem("myObj"));
+        // myObject_d=new Float32Array();
+        // console.log(myObject_d);
         return new faceapi.LabeledFaceDescriptors(label, descriptions)
       })
-    )
+      )
   }
 
