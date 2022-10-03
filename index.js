@@ -178,7 +178,7 @@ async function start() {
   }
   
   function loadLabeledImages() {
-    const labels = ['Captain America', 'Captain Marvel', 'Hawkeye', 'Jim Rhodes', 'Thor', 'Tony Stark']
+    const labels = ['Captain America', 'Captain Marvel', 'Hawkeye', 'Jim Rhodes', 'Thor', 'Naman Pathak']
     return Promise.all(
       labels.map(async label => {
         const descriptions = []
