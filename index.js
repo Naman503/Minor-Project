@@ -16,7 +16,7 @@ const imageUploadActionFrame = document.getElementById('imageUpload');
     faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
     faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
     faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
-    faceapi.nets.faceExpressionNet.loadFromUri('./models'),
+    // faceapi.nets.faceExpressionNet.loadFromUri('./models'),
     faceapi.nets.ssdMobilenetv1.loadFromUri('./models')
     
 ]).then(enableAllButton())
@@ -69,7 +69,7 @@ async function startVideo(){
                 err=>console.error(err);
                 setTimeout(function(){
                     video.play();
-                  },50)
+                  },100)
                 })
 
         }
@@ -81,22 +81,28 @@ async function startVideo(){
               document.querySelector(".loadingMassage").classList.remove("hide");
               const labeledFaceDescriptors = await loadLabeledImages();
               const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
-              document.querySelector(".loadingMassage").classList.remove("hide");
+              document.querySelector(".loadingMassage").classList.add("hide");
 
 
                 const containerDiv=document.querySelector(".videoDiv");
                 console.log("await")
                 const canvas = faceapi.createCanvasFromMedia(video);
-                
+                canvas.classList.add("canvasVideo");
                 containerDiv.append(canvas);
             
-                const displaySize={width:video.width, height:video.height}
+                const displaySizeVideo={width:video.width, height:video.height}
                 
-                faceapi.matchDimensions(canvas, displaySize);
+                faceapi.matchDimensions(canvas, displaySizeVideo);
                 
+                let attendanceArray=new Array();
 
+                const attendanceDiv = document.createElement('div')
+                attendanceDiv.style.position = 'absolute';
+                attendanceDiv.classList.add("attendanceDiv");
+                document.body.append(attendanceDiv)
+              
 
-
+                const attendanceDivItem=document.querySelector(".attendanceDiv");
 
 
                 setInterval(async ()=>{
@@ -107,7 +113,7 @@ async function startVideo(){
 
                     // const detections=await faceapi.detectAllFaces(video,new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
             
-                    const resizedDetections = faceapi.resizeResults(detections,displaySize);
+                    const resizedDetections = faceapi.resizeResults(detections,displaySizeVideo);
             
                     canvas.getContext('2d').clearRect(0,0, canvas.width,canvas.height);
             
@@ -119,22 +125,33 @@ async function startVideo(){
                         results.forEach((result, i) => {
                         const box = resizedDetections[i].detection.box
                         const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
-                        // attendanceArray.push(result._label);
+                        let consern=0;
+                        for(let i=0;i<attendanceArray.length;i++){
+                          if(result._label==attendanceArray[i]){
+                              consern=1;
+                          }
+                        }
+                        if(consern!=1 && result._label!="unknown"){
+                          attendanceArray.push(result._label);
+                        }
                         drawBox.draw(canvas)
                       })
+                      
+                      attendanceDivItem.innerHTML="<div class='attendanceFirst'> "+attendanceArray.length+" Total<br></div><ol type='1'>"
+                      for(let i=0;i<attendanceArray.length;i++){
+                        if(attendanceArray[i]!="unknown"){
+                        attendanceDivItem.innerHTML=attendanceDivItem.innerHTML+"<li>"+attendanceArray[i]+"</li>";
+                        }
+                       
+                      }
+                      attendanceDivItem.innerHTML=attendanceDivItem.innerHTML+"</ol>"
                    
-                },100)
+                },500)
                
             })
         
        
-        
-      
-
-    
-
-
-
+  
 
 // Image uploding section
 
@@ -150,18 +167,22 @@ async function start() {
     const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
     let image
     let canvas
-    let attendanceArray=new Array();
-  
+    
     document.querySelector(".loadingMassage").classList.add("hide");
     imageUploadActionFrame.classList.remove("hide");
     imageUpload.addEventListener('change', async () => {
+      let attendanceArray=new Array();
       if (image) image.remove()
       if (canvas) canvas.remove()
       image = await faceapi.bufferToImage(imageUpload.files[0])
       container.append(image)
       canvas = faceapi.createCanvasFromMedia(image)
+      canvas.classList.remove("canvasVideo");
       container.append(canvas)
       
+      image.classList.add("imagePosition");
+      image.classList.add("imagePosition");
+
       const displaySize = { width: image.width, height: image.height }
       faceapi.matchDimensions(canvas, displaySize)
       const detections = await faceapi.detectAllFaces(image).withFaceLandmarks().withFaceDescriptors();
@@ -171,14 +192,33 @@ async function start() {
         const box = resizedDetections[i].detection.box
         const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
         attendanceArray.push(result._label);
-        drawBox.draw(canvas)
+        drawBox.draw(canvas);
       })
-      console.log(attendanceArray);
+      const attendanceDiv = document.createElement('div')
+      attendanceDiv.style.position = 'absolute';
+      attendanceDiv.classList.add("attendanceDiv");
+      document.body.append(attendanceDiv)
+
+      const attendanceDivItem=document.querySelector(".attendanceDiv");
+      let unknown=0;
+      let present=0;
+      attendanceDivItem.innerHTML="<div class='attendanceFirst'> "+attendanceArray.length+" Total<br></div><ol type='1'>"
+      for(let i=0;i<attendanceArray.length;i++){
+        if(attendanceArray[i]!="unknown"){
+        present+=1;
+        attendanceDivItem.innerHTML=attendanceDivItem.innerHTML+"<li>"+attendanceArray[i]+"</li>";
+        }
+        else{
+          unknown+=1;
+        }
+      }
+      attendanceDivItem.innerHTML=attendanceDivItem.innerHTML+"</ol>"
+      document.querySelector(".attendanceFirst").innerHTML+=unknown+" Unknown<br>"+present+" Present <br>";
     })
   }
   
   function loadLabeledImages() {
-    const labels = ['Captain America', 'Captain Marvel', 'Hawkeye', 'Jim Rhodes', 'Thor', 'Naman Pathak']
+    const labels = ['Piyush Mandloi', 'Rahul Rajput', 'Naman Pathak']
     return Promise.all(
       labels.map(async label => {
         const descriptions = []
