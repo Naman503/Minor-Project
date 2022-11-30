@@ -16,8 +16,7 @@ body{
   
 }
 canvas{
-    position: absolute;
-     
+    position: absolute;  
 }
 .videoDiv{
     position:absolute;
@@ -29,6 +28,7 @@ canvas{
     position: absolute;
     border-radius: 20px;
     border: 8px solid black;
+    
     
 }
 #imageUpload{
@@ -47,6 +47,33 @@ canvas{
     /* width: 400px; */
     position:absolute;
     
+}
+.resultImgPosition{
+    /* margin: 2% 2% 2% 5%; */
+    margin: 2% 0 0 4.3%;
+    border-radius: 25px;
+    position: absolute;
+    left:50%;
+    width: 550px;
+    height: 420px;
+    border: 4px solid rgb(22, 80, 22);
+}
+#webcam{
+    position: absolute;
+    margin: 2% 0 0 12.8%;
+    /* border: 4px solid rgb(221, 254, 54); */
+    border-radius: 25px;
+    height: 420px;
+    width: 550px;
+}
+#TakePhoto{
+    position: absolute;
+    border-radius: 50px;
+    border: 5px solid black;
+    font-size: 2.1rem;
+    width: 3.8rem;
+    top:15%;
+    left:20%
 }
 .hide{
     /* visibility: hidden; */

@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>face dector</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <link rel="stylesheet" href="style.css">
@@ -58,6 +60,7 @@
               <a href="#" id="pauseVideo" class="btn btn-secondary my-2 hide">Pause video</a>
               <a href="#" id="stopVideo" class="btn btn-secondary my-2 hide">Stop video</a>
               <a href="#" id="uplodeImage" class="btn btn-secondary my-2 hide">Uplode Image</a>
+              <a href="#" id="TakeImage" class="btn btn-secondary my-2 hide">Take Photos</a>
               <h3 class="loadingMassage">Loading All the Modules....</h3>
             </p>
           </div>
@@ -66,12 +69,19 @@
 
 
 <div class="videoDiv">
-  <video id="video" width="720" height="560" class="hide" muted></video>
+  <video id="video" width="750" height="540" class="hide" muted></video>
 </div>
+<input type="file" id="imageUpload" class="hide">
+<video id="webcam"  autoplay playsinline width="750" height="540"></video>
 
-    <input type="file" id="imageUpload" class="hide">
+<div id="result"></div>
+<canvas id="canvas" class="d-none"></canvas>
+<audio id="snapSound" src="snap.wav" preload = "auto"></audio>
+<button id="TakePhoto"><i class="bi bi-camera-fill"></i></button>
 
 </body>
+
+<script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 </html>
