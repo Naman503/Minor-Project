@@ -159,6 +159,7 @@ const FLAG_TYPED_ARRAY = "FLAG_TYPED_ARRAY";
 
 
 async function TakePhoto(){
+  // await faceapi.nets.ssdMobilenetv1.loadFromUri("./models");
   TakePhotoBtn.classList.remove("hide");
 
   const webcamElement = document.getElementById('webcam');
