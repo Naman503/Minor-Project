@@ -1,5 +1,22 @@
 // import * as faceapi from 'face-api.js';
 
+
+// const mongoose = require('mongoose');
+
+// mongoose.connect('mongodb://localhost:27017/test101DB');
+
+// const minorTestSchema = new mongoose.Schema({
+//     Obj: {
+//         type: Object
+//     }
+// });
+
+// const Objects =mongoose.model("Object",minorTestSchema);
+
+
+
+
+
 const video = document.getElementById("video");
 const stopVideo = document.getElementById("stopVideo");
 const videoButton = document.getElementById("videoButton");
@@ -159,7 +176,7 @@ const FLAG_TYPED_ARRAY = "FLAG_TYPED_ARRAY";
 
 
 async function TakePhoto(){
-  // await faceapi.nets.ssdMobilenetv1.loadFromUri("./models");
+  await faceapi.nets.ssdMobilenetv1.loadFromUri("./models");
   TakePhotoBtn.classList.remove("hide");
 
   const webcamElement = document.getElementById('webcam');
@@ -174,7 +191,7 @@ async function TakePhoto(){
   webcam.start()
   .then(result =>{
      console.log("webcam started");
-     document.querySelector(".loadingMassage").classList.add("hide");
+    //  document.querySelector(".loadingMassage").classList.add("hide");
   })
   .catch(err => {
       console.log(err);
@@ -182,19 +199,30 @@ async function TakePhoto(){
   const labeledFaceDescriptors = await loadLabeledImages();
 
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
+
+  
+  
+  // console.log(faceMatcher);
+  // let test101=JSON.stringify(faceMatcher);
+  // console.log(faceMatcher);
+  // let test102=faceMatcher;
+  // test102=JSON.parse(test101);
+  // console.log(test102);
+
   let image;
   let canvas;
   document.querySelector(".loadingMassage").classList.add("hide");
   let attendanceArray = new Array();
   let time=0;
   TakePhotoBtn.addEventListener("click",async function(){
-    if(time==0){  
-    document.querySelector(".loadingMassage").classList.remove("hide");
-      time=1;
+    if(time===0){  
+      document.querySelector(".loadingMassage").classList.remove("hide");
+      time++;
+      console.log(time);
     }
-    console.log("snap");
     if (image) image.remove();
     if(canvas) canvas.remove();
+    console.log("snap");
     
     
     let picture = webcam.snap();
@@ -364,26 +392,18 @@ async function start() {
 
 
 
-
-
-
-
-
-
-
-
 function loadLabeledImages() {
-  const labels = ["Piyush Mandloi", "Rahul Rajput", "Naman Pathak"];
+  const labels = ["Naman Pathak"];
 
   return Promise.all(
     labels.map(async (label) => {
-      if (localStorage.getItem("testObject" + label) == null) {
+      if (localStorage.getItem("testObject" + label) === null) {
         console.log("hello");
 
         const descriptions = [];
         for (let i = 1; i <= 2; i++) {
           const img = await faceapi.fetchImage(
-            `https://raw.githubusercontent.com/Naman503/Minor-Project/basic/labeled_images/${label}/${i}.jpg`
+            `https://raw.githubusercontent.com/Naman503/Minor-Project/advance/labeled_images/${label}/${i}.jpg`
           );
           const detections = await faceapi
             .detectSingleFace(img)
@@ -438,4 +458,51 @@ function loadLabeledImages() {
       return new faceapi.LabeledFaceDescriptors(label, decodedJson);
     })
   );
+}
+
+
+
+function stringifyForEveryThing(descriptions){
+  let jsonStr = JSON.stringify(descriptions, function (key, value) {
+    // the replacer function is looking for some typed arrays.
+    // If found, it replaces it by a trio
+    if (
+      value instanceof Int8Array ||
+      value instanceof Uint8Array ||
+      value instanceof Uint8ClampedArray ||
+      value instanceof Int16Array ||
+      value instanceof Uint16Array ||
+      value instanceof Int32Array ||
+      value instanceof Uint32Array ||
+      value instanceof Float32Array ||
+      value instanceof Float64Array
+    ) {
+      var replacement = {
+        constructor: value.constructor.name,
+        data: Array.apply([], value),
+        flag: FLAG_TYPED_ARRAY,
+      };
+      return replacement;
+    }
+    return value;
+  });
+
+  return jsonStr;
+  
+}
+
+function unDoStringify(retrivedObj){
+  let decodedJson = JSON.parse(retrivedObj, function (key, value) {
+    // the reviver function looks for the typed array flag
+    try {
+      if ("flag" in value && value.flag === FLAG_TYPED_ARRAY) {
+        // if found, we convert it back to a typed array
+        return new context[value.constructor](value.data);
+      }
+    } catch (e) {}
+
+    // if flag not found no conversion is done
+    return value;
+  });
+  return decodedJson;
 }

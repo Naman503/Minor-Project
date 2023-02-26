@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "mongodb": "^4.12.1",
+    "mongoose": "^6.8.0",
+    "mongos": "^0.0.0"
+  },
+  "name": "face-api-system",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naman503/Minor-Project.git"
+  },
+  "author": "naman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naman503/Minor-Project/issues"
+  },
+  "homepage": "https://github.com/Naman503/Minor-Project#readme",
+  "description": ""
+}
