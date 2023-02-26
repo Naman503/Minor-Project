@@ -401,7 +401,7 @@ function loadLabeledImages() {
         console.log("hello");
 
         const descriptions = [];
-        for (let i = 1; i <= 2; i++) {
+        for (let i = 1; i <= 10; i++) {
           const img = await faceapi.fetchImage(
             `https://raw.githubusercontent.com/Naman503/Minor-Project/advance/labeled_images/${label}/${i}.jpg`
           );
