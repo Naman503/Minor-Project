@@ -1,20 +1,3 @@
-// import * as faceapi from 'face-api.js';
-
-
-// const mongoose = require('mongoose');
-
-// mongoose.connect('mongodb://localhost:27017/test101DB');
-
-// const minorTestSchema = new mongoose.Schema({
-//     Obj: {
-//         type: Object
-//     }
-// });
-
-// const Objects =mongoose.model("Object",minorTestSchema);
-
-
-
 
 
 const video = document.getElementById("video");
@@ -24,6 +7,7 @@ const uplodeImage = document.getElementById("uplodeImage");
 const pauseVideo = document.getElementById("pauseVideo");
 const takeImages = document.getElementById("TakeImage");
 const TakePhotoBtn = document.getElementById("TakePhoto");
+
 
 const imageUploadActionFrame = document.getElementById("imageUpload");
 
@@ -46,6 +30,7 @@ videoButton.addEventListener("click", function () {
   uplodeImage.classList.add("hide");
   stopVideo.classList.remove("hide");
   pauseVideo.classList.remove("hide");
+  takeImages.classList.add("hide");
   video.classList.remove("hide");
   startVideo();
 });
@@ -64,6 +49,7 @@ pauseVideo.addEventListener("click", function () {
 uplodeImage.addEventListener("click", function () {
   // document.querySelector("canvas").style.cssText='left:5%';
   videoButton.classList.add("hide");
+  takeImages.classList.add("hide");
   video.srcObject = stop();
   video.classList.add("hide");
   document.querySelector(".loadingMassage").classList.remove("hide");
@@ -76,6 +62,11 @@ takeImages.addEventListener("click",function(){
   document.querySelector(".loadingMassage").classList.remove("hide");
   TakePhoto();
 })
+
+
+
+
+
 
 async function startVideo() {
   navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
@@ -90,7 +81,7 @@ async function startVideo() {
 video.addEventListener("play", async () => {
   document.querySelector(".loadingMassage").classList.remove("hide");
   const labeledFaceDescriptors = await loadLabeledImages();
-  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
+  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.47);
   document.querySelector(".loadingMassage").classList.add("hide");
 
   const containerDiv = document.querySelector(".videoDiv");
@@ -118,7 +109,6 @@ video.addEventListener("play", async () => {
       .withFaceLandmarks()
       .withFaceDescriptors();
 
-    // const detections=await faceapi.detectAllFaces(video,new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
 
     const resizedDetections = faceapi.resizeResults(
       detections,
@@ -128,8 +118,7 @@ video.addEventListener("play", async () => {
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
 
     faceapi.draw.drawDetections(canvas, resizedDetections);
-    // faceapi.draw.drawFaceLandmarks(canvas,resizeDetections);
-    // faceapi.draw.drawFaceExpressions(canvas,resizeDetections);
+
 
     const results = resizedDetections.map((d) =>
       faceMatcher.findBestMatch(d.descriptor)
@@ -175,6 +164,12 @@ const FLAG_TYPED_ARRAY = "FLAG_TYPED_ARRAY";
 
 
 
+
+
+
+
+
+
 async function TakePhoto(){
   await faceapi.nets.ssdMobilenetv1.loadFromUri("./models");
   TakePhotoBtn.classList.remove("hide");
@@ -198,7 +193,7 @@ async function TakePhoto(){
   });
   const labeledFaceDescriptors = await loadLabeledImages();
 
-  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
+  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.56);
 
   
   
@@ -315,7 +310,7 @@ async function start() {
   // console.log(decodedJson);
   // const labeledFaceDescriptors = decodedJson;
 
-  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
+  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.56);
   let image;
   let canvas;
 
