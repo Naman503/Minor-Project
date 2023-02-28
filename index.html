@@ -20,14 +20,15 @@
             <div class="row">
               <div class="col-sm-8 col-md-7 py-4">
                 <h4 class="text-white">Indore Institute Of Science and Technology</h4>
-                <p class="text-muted">This is a web Application Design developed by Naman Pathak along with Piyush and Rahul for taking attendance Online with face recognition to decrease time consumption and complexity.</p>
+                <p class="text-muted">This is a web Application Design developed by Naman Pathak along with Nilesh Satote for taking attendance Online with face recognition to decrease time consumption and complexity.</p>
               </div>
               <div class="col-sm-4 offset-md-1 py-4">
                 <h4 class="text-white">Contact</h4>
                 <ul class="list-unstyled">
-                  <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                  <li><a href="#" class="text-white">Like on Facebook</a></li>
-                  <li><a href="#" class="text-white">Email me</a></li>
+                  <li><a href="../Minor-Project/componenet/home.html" class="text-white">Home</a></li>
+                  <li><a href="../Minor-Project/index.html" class="text-white">Attendance</a></li>
+                  <li><a href="./componenet/data.html" class="text-white">Data</a></li>
+                  <li><a href="./componenet/about.html" class="text-white">About</a></li>
                 </ul>
               </div>
             </div>
@@ -53,8 +54,53 @@
       <section class="py-1 text-center container">
         <div class="row py-lg-1">
           <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">B-tech // 3rd Year</h1>
-            <p class="lead text-muted">CS-2 Data Base Managment System</p>
+ 
+
+            <!-- form section  -->
+            <div class="form_cnt">
+              <form class="row gx-3 gy-2 align-items-center">
+                <div class="col-sm-3">
+                  <label class="visually-hidden" for="specificSizeSelect">Preference</label>
+                  <select class="form-select" id="specificSizeSelect">
+                    <option selected>Select Year</option>
+                    <option value="1">BTech-1st year</option>
+                    <option value="2">BTech-2nd year</option>
+                    <option value="3">BTech-3rd year</option>
+                    <option value="4">BTech-4rth year</option>
+                  </select>
+                </div>
+
+                <div class="col-sm-3">
+                  <label class="visually-hidden" for="specificSizeSelect">Preference</label>
+                  <select class="form-select" id="specificSizeSelect">
+                    <option selected>Select Branch</option>
+                    <option value="1">Computer Science</option>
+                    <option value="2">Information Technology</option>
+                    <option value="3">Chemical Engineering</option>
+                    <option value="4">Civil Engineering</option>
+                    <option value="5">Mechenical Engineering</option>
+                    <option value="6">Electronic and Communication</option>
+                    <option value="1">AI ML</option>
+                  </select>
+                </div>
+
+                <div class="col-sm-3">
+                  <label class="visually-hidden" for="specificSizeSelect">Preference</label>
+                  <select class="form-select" id="specificSizeSelect">
+                    <option selected>Section</option>
+                    <option value="1">A1</option>
+                    <option value="2">A2</option>
+                    <option value="3">A3</option>
+                   
+                  </select>
+                </div>
+               
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+           
             <p>
               <a href="#" id="videoButton" class="btn btn-primary my-2 hide">Video</a>
               <a href="#" id="pauseVideo" class="btn btn-secondary my-2 hide">Pause video</a>
@@ -67,7 +113,7 @@
         </div>
       </section>
 
-
+<div class="whole">
 <div class="videoDiv">
   <video id="video" width="750" height="540" class="hide" muted></video>
 </div>
@@ -79,6 +125,7 @@
 <audio id="snapSound" src="snap.wav" preload = "auto"></audio>
 <button id="TakePhoto"><i class="bi bi-camera-fill"></i></button>
 
+</div>
 </body>
 
 <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>

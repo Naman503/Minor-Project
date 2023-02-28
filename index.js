@@ -81,7 +81,7 @@ async function startVideo() {
 video.addEventListener("play", async () => {
   document.querySelector(".loadingMassage").classList.remove("hide");
   const labeledFaceDescriptors = await loadLabeledImages();
-  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.47);
+  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.56);
   document.querySelector(".loadingMassage").classList.add("hide");
 
   const containerDiv = document.querySelector(".videoDiv");
@@ -359,7 +359,7 @@ async function start() {
     let unknown = 0;
     let present = 0;
     attendanceDivItem.innerHTML =
-      "<div class='attendanceFirst'> " +
+      "<div class='attendanceFirst'> " 
       attendanceArray.length +
       " Total<br></div><ol type='1'>";
     for (let i = 0; i < attendanceArray.length; i++) {

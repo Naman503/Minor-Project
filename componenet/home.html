@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="../componenet/home.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Home</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg  navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" >AttenDo</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <!-- <a href="../Minor-Project/home.html" class="text-white">Home</a> -->
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html">Attendance</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../componenet/data.html">Data</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../componenet/about.html" tabindex="-1" aria-disabled="true">About</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+ 
+
+<div class="slider">
+  <div class="cnt_1">
+    <div class="w3-content w3-section" style="max-width:500px">
+      <img class="mySlides" src="../img_cnt/pic3.jpg" style="width:100%">
+      <img class="mySlides" src="../img_cnt/pic2.jpg" style="width:100%">
+      <img class="mySlides" src="../img_cnt/pic1.jpg" style="width:100%">
+    </div>
+  </div>
+
+  <div class="cnt_2">
+      <h1>Time and Attendance for <br>contractual and Distribute workforce</h1>
+  </div>
+</div>
+ <!-- 2nd -->
+ 
+<div class="png_cnt">
+  <div class="png_bkg">
+    <div id=container>
+      Say no to,
+      <div id=flip>
+        <div><div>Thumb</div></div>
+        <div><div>With Attendo</div></div>
+        <div><div>Yes to face</div></div>
+
+      </div>
+      
+      <h1>Attendanc with AttenDo makes easy and <br>
+        reduce the time complexity in ClassRoom</h1>
+      </div>
+    </div>
+
+   
+    <div class="paragraph_cnt">
+      <div class="img_cnt">
+        <img alt="pic1" src="../img_cnt/mobiletablet-based-attendance.png">
+      </div>
+      
+      <div class="pg_cnt">
+          
+           <span>
+            <h6>Mobile/Tablet based Face Recognition Attendance System</h6>
+            You won’t need any complicated hardware as Truein eliminates 
+            <br> the need for a standalone face attendance
+             machine. Configure Truein's app on any Android or
+             iOS based device, and you are good to go. 
+             The absolute touchless and germ-free way to sign in.</span>
+          </div>
+
+          </div>
+
+
+          <div class="paragraph_cnt">
+                <div class="pg_cnt">
+               <span>
+                <h6>Recognize Face with Mask on</h6>
+                Truein runs an AI-powered face recognition attendance system, which provides practically 100% robust and accurate attendance. The facial verification feature can screen for face masks and identify people even with any change in facial attributes like beard, change of hairstyle or with accessories like specs.</span>
+              </div>
+
+              <div class="img_cnt">
+                <img alt="pic1" src="../img_cnt/Recognition-Face-Mask-On-1.png">
+                </div>
+    
+              </div>
+
+
+              <div class="paragraph_cnt">
+
+                <div class="img_cnt">
+                  <img alt="pic1" src="../img_cnt/selfie.png">
+                  </div>
+
+                <div class="pg_cnt">
+               <span>
+                <h6>Selfie based Geofencing Technology</h6>
+                Staff can mark attendance using their mobile phones. Our geofencing technology allows attendance only from approved locations. Perfect for contract workers, retail store staff, and on-the-go field staff.</span>
+              </div>   
+              </div>
+
+<!-- footer -->
+
+
+  <div class="footer_cnt">
+    <footer>
+      <!-- <h1>footer</h1> -->
+    </footer>
+  </div>
+   
+      
+  <script>
+    var myIndex = 0;
+    carousel();
+    
+    function carousel() {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      myIndex++;
+      if (myIndex > x.length) {myIndex = 1}    
+      x[myIndex-1].style.display = "block";  
+      setTimeout(carousel, 5000); // 
+    }
+    </script>
+     
+  
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</html>
